@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlama.io.DevsTwo.business.abstracts.ITechnologyService;
 import kodlama.io.DevsTwo.business.requests.CreateTechnologyRequest;
+import kodlama.io.DevsTwo.business.requests.DeleteTechnologyRequest;
 import kodlama.io.DevsTwo.business.responses.GetAllTechnologyResponse;
 import kodlama.io.DevsTwo.dataAccess.abstracts.ProgrammingLanguageRepository;
 import kodlama.io.DevsTwo.dataAccess.abstracts.TechnologyRepository;
@@ -50,12 +51,8 @@ public class TechnologyManager implements ITechnologyService {
 	}
 
 	@Override
-	public void delete(CreateTechnologyRequest createTechnologyRequest) {
-		Technology technology = new Technology();
-		ProgrammingLanguage pLang = pLangRepo.findById(createTechnologyRequest.getProgrammingLangId()).get();
-		technology.setName(createTechnologyRequest.getName());
-		technology.setProgrammingLanguage(pLang);
-		this.techRepo.delete(technology);
+	public void delete(DeleteTechnologyRequest deleteTechnologyRequest) {
+		this.techRepo.deleteById(deleteTechnologyRequest.getId());
 		
 	}
 
