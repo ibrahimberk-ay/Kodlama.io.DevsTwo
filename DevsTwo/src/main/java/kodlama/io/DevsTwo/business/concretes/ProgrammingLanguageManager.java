@@ -50,8 +50,10 @@ public class ProgrammingLanguageManager implements IProgrammingLanguageService {
 	}
 
 	@Override
-	public void update(UpdatePLanguageRequest updatePLanguageRequest) {
-		// TODO
+	public void update(UpdatePLanguageRequest updatePLanguageRequest, int langId) {
+		ProgrammingLanguage pLang = programmingLanguageRepository.getReferenceById(langId);
+		pLang.setName(updatePLanguageRequest.getName());
+		this.programmingLanguageRepository.save(pLang);
 		
 		
 	}

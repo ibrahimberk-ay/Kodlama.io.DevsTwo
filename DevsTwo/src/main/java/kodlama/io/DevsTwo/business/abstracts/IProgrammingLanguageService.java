@@ -12,6 +12,6 @@ public interface IProgrammingLanguageService {
 	
 	void add(CreatePLanguageRequest createPLanguageRequest);
 	void delete(DeletePLanguageRequest deletePLanguageRequest);
-	void update(UpdatePLanguageRequest updatePLanguageRequest);
+	void update(UpdatePLanguageRequest updatePLanguageRequest, int langId);
 	
 }

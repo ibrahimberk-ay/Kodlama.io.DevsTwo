@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlama.io.DevsTwo.business.abstracts.ITechnologyService;
 import kodlama.io.DevsTwo.business.requests.CreateTechnologyRequest;
 import kodlama.io.DevsTwo.business.requests.DeleteTechnologyRequest;
+import kodlama.io.DevsTwo.business.requests.UpdateTechnologyRequest;
 import kodlama.io.DevsTwo.business.responses.GetAllTechnologyResponse;
 
 @RestController
@@ -37,6 +39,11 @@ public class TechnologyController {
 	@DeleteMapping("/delete")
 	public void delete(DeleteTechnologyRequest deleteTechnologyRequest) {
 		this.iTechnoService.delete(deleteTechnologyRequest);
+	}
+	
+	@PutMapping("/update")
+	public void update(UpdateTechnologyRequest updateTechnologyRequest, int techId) {
+		this.iTechnoService.update(updateTechnologyRequest, techId);
 	}
 	
 

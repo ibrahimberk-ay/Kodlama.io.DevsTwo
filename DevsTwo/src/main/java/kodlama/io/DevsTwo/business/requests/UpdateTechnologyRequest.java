@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdatePLanguageRequest {
+public class UpdateTechnologyRequest {
 	private String name;
+	private int programmingLangId;
 }

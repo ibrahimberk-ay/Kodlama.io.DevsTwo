@@ -4,6 +4,7 @@ import java.util.List;
 
 import kodlama.io.DevsTwo.business.requests.CreateTechnologyRequest;
 import kodlama.io.DevsTwo.business.requests.DeleteTechnologyRequest;
+import kodlama.io.DevsTwo.business.requests.UpdateTechnologyRequest;
 import kodlama.io.DevsTwo.business.responses.GetAllTechnologyResponse;
 
 public interface ITechnologyService {
@@ -11,5 +12,5 @@ public interface ITechnologyService {
 	
 	void add(CreateTechnologyRequest createTechnologyRequest);
 	void delete(DeleteTechnologyRequest deleteTechnologyRequest);
-	void update(CreateTechnologyRequest createTechnologyRequest);
+	void update(UpdateTechnologyRequest updateTechnologyRequest, int techId);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kodlama.io.DevsTwo.business.abstracts.ITechnologyService;
 import kodlama.io.DevsTwo.business.requests.CreateTechnologyRequest;
 import kodlama.io.DevsTwo.business.requests.DeleteTechnologyRequest;
+import kodlama.io.DevsTwo.business.requests.UpdateTechnologyRequest;
 import kodlama.io.DevsTwo.business.responses.GetAllTechnologyResponse;
 import kodlama.io.DevsTwo.dataAccess.abstracts.ProgrammingLanguageRepository;
 import kodlama.io.DevsTwo.dataAccess.abstracts.TechnologyRepository;
@@ -32,6 +33,7 @@ public class TechnologyManager implements ITechnologyService {
 		
 		for(Technology techno : technology) {
 			GetAllTechnologyResponse responseItem = new GetAllTechnologyResponse();
+			responseItem.setId(techno.getId());
 			responseItem.setName(techno.getName());
 			responseItem.setProgrammingLanguageName(techno.getProgrammingLanguage().getName());
 			technoResponse.add(responseItem);
@@ -57,8 +59,13 @@ public class TechnologyManager implements ITechnologyService {
 	}
 
 	@Override
-	public void update(CreateTechnologyRequest createTechnologyRequest) {
-		// TODO Auto-generated method stub
+	public void update(UpdateTechnologyRequest updateTechnologyRequest, int techId) {
+		Technology tech = techRepo.findById(techId).get();
+		ProgrammingLanguage pLang = pLangRepo.findById(updateTechnologyRequest.getProgrammingLangId()).get();
+		tech.setName(updateTechnologyRequest.getName());
+		tech.setProgrammingLanguage(pLang);
+		this.techRepo.save(tech);
+		
 		
 	}
 	

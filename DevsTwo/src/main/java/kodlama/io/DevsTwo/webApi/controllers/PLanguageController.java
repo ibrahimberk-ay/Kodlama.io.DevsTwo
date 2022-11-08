@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlama.io.DevsTwo.business.abstracts.IProgrammingLanguageService;
 import kodlama.io.DevsTwo.business.requests.CreatePLanguageRequest;
 import kodlama.io.DevsTwo.business.requests.DeletePLanguageRequest;
+import kodlama.io.DevsTwo.business.requests.UpdatePLanguageRequest;
 import kodlama.io.DevsTwo.business.responses.GetAllProgLanguagesResponse;
 
 @RestController
@@ -39,5 +41,9 @@ public class PLanguageController {
 		this.iLangService.delete(deletePLanguageRequest);
 	}
 	
+	@PutMapping("/update")
+	public void update(UpdatePLanguageRequest updatePLanguageRequest, int langId) {
+		this.iLangService.update(updatePLanguageRequest, langId);
+	}
 	
 }
