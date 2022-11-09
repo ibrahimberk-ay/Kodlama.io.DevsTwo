@@ -53,6 +53,9 @@ public class ProgrammingLanguageManager implements IProgrammingLanguageService {
 			if(language.getName().matches(createPLanguageRequest.getName())) {
 				throw new Exception("This Programming Language Already Exist");
 			}
+			if(createPLanguageRequest.getName().isBlank()) {
+				throw new Exception("Programming Language Name Can Not Be Empty");
+			}
 		}
 		
 		pLang.setName(createPLanguageRequest.getName());
