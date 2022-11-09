@@ -15,6 +15,7 @@ import kodlama.io.DevsTwo.business.requests.CreatePLanguageRequest;
 import kodlama.io.DevsTwo.business.requests.DeletePLanguageRequest;
 import kodlama.io.DevsTwo.business.requests.UpdatePLanguageRequest;
 import kodlama.io.DevsTwo.business.responses.GetAllProgLanguagesResponse;
+import kodlama.io.DevsTwo.business.responses.GetByProgLangIdResponse;
 
 @RestController
 @RequestMapping("/api/programminglanguages")
@@ -29,6 +30,11 @@ public class PLanguageController {
 	@GetMapping("/getall")
 	public List<GetAllProgLanguagesResponse> getAll(){
 		return iLangService.getAll();
+	}
+	
+	@GetMapping("/getbyid")
+	public GetByProgLangIdResponse getById(int id) {
+		return iLangService.getById(id);
 	}
 	
 	@PostMapping("/add")

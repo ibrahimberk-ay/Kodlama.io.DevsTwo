@@ -10,6 +10,7 @@ import kodlama.io.DevsTwo.business.requests.CreatePLanguageRequest;
 import kodlama.io.DevsTwo.business.requests.DeletePLanguageRequest;
 import kodlama.io.DevsTwo.business.requests.UpdatePLanguageRequest;
 import kodlama.io.DevsTwo.business.responses.GetAllProgLanguagesResponse;
+import kodlama.io.DevsTwo.business.responses.GetByProgLangIdResponse;
 import kodlama.io.DevsTwo.dataAccess.abstracts.ProgrammingLanguageRepository;
 import kodlama.io.DevsTwo.entities.concretes.ProgrammingLanguage;
 
@@ -35,7 +36,14 @@ public class ProgrammingLanguageManager implements IProgrammingLanguageService {
 		
 		return langsResponse;
 	}
-
+	@Override
+	public GetByProgLangIdResponse getById(int id) {
+		ProgrammingLanguage pLang = programmingLanguageRepository.findById(id).get();
+		GetByProgLangIdResponse responseItem = new GetByProgLangIdResponse();
+		responseItem.setName(pLang.getName());
+		return responseItem;
+	}
+	
 	@Override
 	public void add(CreatePLanguageRequest createPLanguageRequest) {
 		ProgrammingLanguage pLang = new ProgrammingLanguage();

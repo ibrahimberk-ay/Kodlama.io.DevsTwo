@@ -10,6 +10,7 @@ import kodlama.io.DevsTwo.business.requests.CreateTechnologyRequest;
 import kodlama.io.DevsTwo.business.requests.DeleteTechnologyRequest;
 import kodlama.io.DevsTwo.business.requests.UpdateTechnologyRequest;
 import kodlama.io.DevsTwo.business.responses.GetAllTechnologyResponse;
+import kodlama.io.DevsTwo.business.responses.GetByTechIdResponse;
 import kodlama.io.DevsTwo.dataAccess.abstracts.ProgrammingLanguageRepository;
 import kodlama.io.DevsTwo.dataAccess.abstracts.TechnologyRepository;
 import kodlama.io.DevsTwo.entities.concretes.ProgrammingLanguage;
@@ -38,8 +39,16 @@ public class TechnologyManager implements ITechnologyService {
 			responseItem.setProgrammingLanguageName(techno.getProgrammingLanguage().getName());
 			technoResponse.add(responseItem);
 		}
-		
 		return technoResponse;
+	}
+	
+	@Override
+	public GetByTechIdResponse getById(int id) {
+		Technology tech = techRepo.findById(id).get();
+		GetByTechIdResponse responseItem = new GetByTechIdResponse();
+		responseItem.setName(tech.getName());
+		responseItem.setProgrammingLanguageName(tech.getProgrammingLanguage().getName());
+		return responseItem;
 	}
 
 	@Override
@@ -49,13 +58,11 @@ public class TechnologyManager implements ITechnologyService {
 		technology.setName(createTechnologyRequest.getName());
 		technology.setProgrammingLanguage(pLang);
 		this.techRepo.save(technology);
-		
 	}
 
 	@Override
 	public void delete(DeleteTechnologyRequest deleteTechnologyRequest) {
 		this.techRepo.deleteById(deleteTechnologyRequest.getId());
-		
 	}
 
 	@Override
@@ -65,9 +72,9 @@ public class TechnologyManager implements ITechnologyService {
 		tech.setName(updateTechnologyRequest.getName());
 		tech.setProgrammingLanguage(pLang);
 		this.techRepo.save(tech);
-		
-		
 	}
+
+	
 	
 	
 	
