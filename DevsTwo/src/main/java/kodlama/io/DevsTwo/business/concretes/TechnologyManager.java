@@ -64,6 +64,9 @@ public class TechnologyManager implements ITechnologyService {
 			{
 				throw new Exception("This Technology and Its Programming Language Already Exists");
 			}
+			if(createTechnologyRequest.getName().isBlank()) {
+				throw new Exception("Technology Name Can Not Be Empty");
+			}
 		}
 		technology.setName(createTechnologyRequest.getName());
 		technology.setProgrammingLanguage(pLang);
