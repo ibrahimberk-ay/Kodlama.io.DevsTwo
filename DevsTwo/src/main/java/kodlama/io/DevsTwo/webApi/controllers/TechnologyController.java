@@ -38,7 +38,7 @@ public class TechnologyController {
 	}
 	
 	@PostMapping("/add")
-	public void add(CreateTechnologyRequest createTechnologyRequest) {
+	public void add(CreateTechnologyRequest createTechnologyRequest) throws Exception {
 		this.iTechnoService.add(createTechnologyRequest);
 	}
 	

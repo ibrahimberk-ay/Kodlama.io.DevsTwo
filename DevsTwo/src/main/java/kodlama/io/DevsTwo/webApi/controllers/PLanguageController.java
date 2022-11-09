@@ -38,7 +38,7 @@ public class PLanguageController {
 	}
 	
 	@PostMapping("/add")
-	public void add(CreatePLanguageRequest createPLanguageRequest) {
+	public void add(CreatePLanguageRequest createPLanguageRequest) throws Exception {
 		this.iLangService.add(createPLanguageRequest);
 	}
 	

@@ -12,7 +12,7 @@ public interface ITechnologyService {
 	List<GetAllTechnologyResponse> getAll();
 	GetByTechIdResponse getById(int id);
 	
-	void add(CreateTechnologyRequest createTechnologyRequest);
+	void add(CreateTechnologyRequest createTechnologyRequest) throws Exception;
 	void delete(DeleteTechnologyRequest deleteTechnologyRequest);
 	void update(UpdateTechnologyRequest updateTechnologyRequest, int techId);
 }

@@ -45,8 +45,16 @@ public class ProgrammingLanguageManager implements IProgrammingLanguageService {
 	}
 	
 	@Override
-	public void add(CreatePLanguageRequest createPLanguageRequest) {
+	public void add(CreatePLanguageRequest createPLanguageRequest) throws Exception {
 		ProgrammingLanguage pLang = new ProgrammingLanguage();
+		
+		List<ProgrammingLanguage> pLangs = programmingLanguageRepository.findAll();
+		for(ProgrammingLanguage language : pLangs) {
+			if(language.getName().matches(createPLanguageRequest.getName())) {
+				throw new Exception("This Programming Language Already Exist");
+			}
+		}
+		
 		pLang.setName(createPLanguageRequest.getName());
 		this.programmingLanguageRepository.save(pLang);
 		

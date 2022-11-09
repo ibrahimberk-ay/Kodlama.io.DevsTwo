@@ -52,9 +52,19 @@ public class TechnologyManager implements ITechnologyService {
 	}
 
 	@Override
-	public void add(CreateTechnologyRequest createTechnologyRequest) {
+	public void add(CreateTechnologyRequest createTechnologyRequest) throws Exception{
 		Technology technology = new Technology();
 		ProgrammingLanguage pLang = pLangRepo.findById(createTechnologyRequest.getProgrammingLangId()).get();
+		
+		List<Technology> technologies = techRepo.findAll();
+		for(Technology tech : technologies) {
+			if(tech.getName().matches(createTechnologyRequest.getName()) 
+					&& 
+					tech.getProgrammingLanguage().equals(pLangRepo.findById(createTechnologyRequest.getProgrammingLangId()).get())) 
+			{
+				throw new Exception("This Technology and Its Programming Language Already Exists");
+			}
+		}
 		technology.setName(createTechnologyRequest.getName());
 		technology.setProgrammingLanguage(pLang);
 		this.techRepo.save(technology);
